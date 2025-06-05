@@ -132,14 +132,21 @@
     </ul>
   </div>
   <script>
-    const caseCocher=document.querySelector('input[type='checkbox']')
-    caseCocher.addEventListener('change',(e)=>{
-      localStorage.setItem("caseCochee", e.currentTarget.checked);
-    })
-    // Lors du chargement de la page
-window.addEventListener("DOMContentLoaded", () => {
-  const estCochee = localStorage.getItem("caseCochee") === "true";
-  caseCocher.checked = estCochee;
+   window.addEventListener("DOMContentLoaded", () => {
+  const caseCochees = document.querySelectorAll("input[type='checkbox']");
+
+  caseCochees.forEach((caseCoche, index) => {
+    const key = `caseCochee_${index}`;
+
+    // Restaurer l'état au chargement
+    const estCochee = localStorage.getItem(key) === "true";
+    caseCoche.checked = estCochee;
+
+    // Sauvegarder l'état au changement
+    caseCoche.addEventListener("change", (e) => {
+      localStorage.setItem(key, e.currentTarget.checked);
+    });
+  });
 });
 
   </script>
