@@ -131,5 +131,17 @@
       <li><input type="checkbox"> Portfolio personnel</li>
     </ul>
   </div>
+  <script>
+    const caseCocher=document.querySelector('input[type='checkbox']')
+    caseCocher.addEventListener('change',(e)=>{
+      localStorage.setItem("caseCochee", e.currentTarget.checked);
+    })
+    // Lors du chargement de la page
+window.addEventListener("DOMContentLoaded", () => {
+  const estCochee = localStorage.getItem("caseCochee") === "true";
+  caseACocher.checked = estCochee;
+});
+
+  </script>
 </body>
 </html>
